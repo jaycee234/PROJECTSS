@@ -38,6 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    
+    'corsheaders',
     'app',
     'rest_framework',
     'djoser'
@@ -45,9 +47,10 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.common.CommonMiddleware',
+    'django.middleware.common.CommonMiddleware', # Fixed: Added comma on previous line
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
@@ -63,6 +66,7 @@ TEMPLATES = [
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
+                'django.template.context_processors.debug',
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
@@ -73,7 +77,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'project.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/6.0/ref/settings/#databases
 
@@ -82,12 +85,11 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'asis',
         'USER': 'postgres',
-        'PASSWORD': 'admin',
+        'PASSWORD': 'Blessedme08',
         'HOST': 'localhost',  
         'PORT': '5432',     
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/6.0/ref/settings/#auth-password-validators
@@ -107,20 +109,21 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/6.0/topics/i18n/
 
 LANGUAGE_CODE = 'en-us'
-
 TIME_ZONE = 'UTC'
-
 USE_I18N = True
-
 USE_TZ = True
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/6.0/howto/static-files/
 
+# --- ADDED THESE LINES TO FIX YOUR ERRORS ---
 STATIC_URL = 'static/'
+
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:3000",
+    "http://127.0.0.1:3000",
+]

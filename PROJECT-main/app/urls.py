@@ -1,19 +1,25 @@
-from django.contrib import admin
 from django.urls import path
-from .views import AuthorListCreateAPIView, AuthorRetrieveUpdateDestroyAPIView, MembersListCreateAPIView, MembersRetrieveUpdateDestroyAPIView, BooksListCreateAPIView, BooksRetrieveUpdateDestroyAPIView, BorrowRecordsListCreateAPIView, BorrowRecordsRetrieveUpdateDestroyAPIView
+from .views import (
+    AuthorListCreateAPIView, AuthorRetrieveUpdateDestroyAPIView,
+    MembersListCreateAPIView, MembersRetrieveUpdateDestroyAPIView,
+    BooksListCreateAPIView, BooksRetrieveUpdateDestroyAPIView,
+    BorrowRecordsListCreateAPIView, BorrowRecordsRetrieveUpdateDestroyAPIView
+)
 
 urlpatterns = [
-
-    path('author/', AuthorListCreateAPIView.as_view(), name='author-list-create'),
+    # React calls: .../api/v1/author/
+    path('author/', AuthorListCreateAPIView.as_view(), name='author-list'),
     path('author/<int:pk>/', AuthorRetrieveUpdateDestroyAPIView.as_view(), name='author-detail'),
 
-    path('members/', MembersListCreateAPIView.as_view(), name='members-list-create'),
+    # React calls: .../api/v1/members/
+    path('members/', MembersListCreateAPIView.as_view(), name='members-list'),
     path('members/<int:pk>/', MembersRetrieveUpdateDestroyAPIView.as_view(), name='members-detail'),
 
-    path('books/', BooksListCreateAPIView.as_view(), name='books-list-create'),
+    # React calls: .../api/v1/books/
+    path('books/', BooksListCreateAPIView.as_view(), name='books-list'),
     path('books/<int:pk>/', BooksRetrieveUpdateDestroyAPIView.as_view(), name='books-detail'),
 
-    path('borrow-records/', BorrowRecordsListCreateAPIView.as_view(), name='borrow-records-list-create'),
+    # React calls: .../api/v1/borrow-records/
+    path('borrow-records/', BorrowRecordsListCreateAPIView.as_view(), name='borrow-records-list'),
     path('borrow-records/<int:pk>/', BorrowRecordsRetrieveUpdateDestroyAPIView.as_view(), name='borrow-records-detail'),
-
 ]
